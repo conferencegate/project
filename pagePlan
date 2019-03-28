@@ -1,0 +1,132 @@
+Page plan for Conference Gate project
+
+Page 1: Greeting
+
+[Greeting]
+What would you like to do?
+[Register] > Page 2
+[Login] > Page 3
+[Search Conferences] > Page 4
+[Register for a conference] > Page 13 (If logged in) OR Page 15 (If not logged in)
+
+Page 2: Registration
+
+[Creates a new row in user table]
+Name: [Text box.]
+E-mail: [Text box.]
+Primary subject: [Radio buttons: Biology, Comp. Sci., English, etc.]
+City: [Text box.]
+University, business, or organization: [Text box. Optional]
+[ENTER] > Pass values to Page 5.
+
+Page 3: Login
+
+Registration
+Enter e-mail: [Text box. Adds e-mail address to user.]
+Enter password: [Text box.]
+Re-enter password: [Text box.]
+[ENTER] > Page 8 (Accepted) OR Page 9 (Denied)
+
+Page 4: Conference Search
+
+[Conference Search instructions]
+Search by:
+Keyword: [Text box. Queries title, subject, location, speaker names from conference]
+Name: [Text box. Queries title from conference.]
+Topic: [Radio buttons: Biology, Comp. Sci., English, etc. Queries subject from conference.]
+City: [Text box. Queries city from conference.]
+Date range: [2 text boxes, MMYY, MMYY. Queries date from conference.]
+[ENTER] > Page 12
+
+Page 5: Registration Confirmation
+
+Confirm your registration.
+[Display entered fields by querying user PK.]
+Does this look correct?
+[YES] > Page 6
+[NO] > Page 7
+
+Page 6: Registration Success
+
+[Logs user in.]
+Thanks for signing up!
+[Go to your account.] > Page 8
+[Go to conference search.] > Page 4
+[Log out.]
+
+Page 7: Registration Failure
+
+[Deletes entered row.]
+Sorry about that! Would you like to try again?
+[RETURN TO REGISTRATION] > Page 2
+[RETURN TO MAIN PAGE] > Page 1
+
+Page 8: Your Account
+
+Welcome to your account!
+[Account features. Some ideas:
+Display nearby conferences occurring in the next few months.
+Display conferences in your subject.
+Display conferences you are registered for.]
+[EDIT YOUR ACCOUNT INFORMATION] > Page 10
+[SEARCH CONFERENCES] > Page 4
+[REGISTER FOR A CONFERENCE] > Page 13
+
+Page 9: Password Failure
+
+Password and/or username didn't match. Try again?
+[RETURN TO LOGIN] > Page 3
+[RETURN TO MAIN PAGE] > Page 1
+
+Page 10: Edit Account
+
+This is your current account information:
+[Display account information.]
+Please enter new information. To keep a piece of information the same, leave it blank.
+Name: [Text box.]
+E-mail: [Text box.]
+Primary subject: [Radio buttons: Biology, Comp. Sci., English, etc.]
+City: [Text box.]
+University, business, or organization: [Text box. Optional]
+[ENTER] > Pass values to Page 11.
+
+Page 11: Edit Account Success
+
+[Updates row in user table.]
+Thanks! Here is your new account information:
+[Display updated account information.]
+[RETURN TO ACCOUNT] > Page 8
+[SEARCH CONFERENCES] > Page 4
+[RETURN TO MAIN PAGE] > Page 1
+
+Page 12: Search Results
+
+Returned [COUNT(*)] results.
+[Display results.]
+[RETURN TO CONFERENCE SEARCH] > Page 4
+[RETURN TO MAIN PAGE] > Page 1
+[MY ACCOUNT] > Page 8
+(On each result row:) [REGISTER] > Page 14 (If logged in) OR Page 15 (If not logged in)
+
+Page 13: Register for a Conference
+
+Please enter the Conference ID of the conference you wish to register for: [Text box.]
+[ENTER] > Pass values to page 14
+[I DON'T KNOW MY CONFERENCE ID] > Page 4
+
+Page 14: Register for a Conference Success
+
+[Add new row to registration junction table.]
+You're all registered! Here's what you can look forward to:
+[Display events for the chosen conference.]
+[RETURN TO CONFERENCE SEARCH] > Page 4
+[RETURN TO MAIN PAGE] > Page 1
+[MY ACCOUNT] > Page 8
+
+Page 15: Please Log In
+
+Sorry, you must be logged in to register for a conference.
+[LOGIN] > Page 3
+[RETURN TO MAIN PAGE] > Page 1
+
+
