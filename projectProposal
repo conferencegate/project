@@ -1,0 +1,13 @@
+- Project title: 
+Conference Gate. 
+
+- Develop tools and environment: 
+The main development tools will be: 
+PHP (back-end)
+MySQL
+HTML/CSS and Bootstrap (front-end)
+
+- A short description of your project: what do you plan to deliver? 
+The idea overall is a conference registration gate which acts as a hub for conferences across disciplines. Typically users seeking in-field conferences now have to rely on Google, social media and in-house advertising from conference organizers to hear about conferences they wish to attend. This tool would streamline that information transfer and registration process. The targeted users in the system are:
+Regular users (students, professors...etc). These are our main users. The user will be able to browse different subjects and all the conferences related to the selected subject. Then the user will have the choice to register through our system which will work in this case as the third party between the conference and the user. 
+Education organizations ( IEEE, ACM...etc), which will use this system as a gate to add a conference.   
