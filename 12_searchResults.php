@@ -1,3 +1,6 @@
+<?php
+  session_start();
+?>
 <html>
 <head>
   <title>Search Results</title>
@@ -64,7 +67,7 @@
         <td>" . $row["discipline"] . "</td>
         <td>" . $row["startDate"] . "</td>
         <td>" . $row["endDate"] . "</td>
-        <td><a href=13_conferenceregistration.php?id=". $row["c.conferenceID"] . ">Register</a></td>
+        <td><a href=13_conferenceregistration.php?conferenceID=". $row["conferenceID"] . ">Register</a></td>
         </tr>";
         }
       }

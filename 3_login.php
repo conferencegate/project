@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: 1_mainpage.php");
+    header("location: 8_youraccount.php");
     exit;
 }
  
@@ -69,14 +69,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
-                            $_SESSION["id"] = $id;
+                            $_SESSION["userID"] = $id;
                             $_SESSION["username"] = $username;                            
-                            
                             // Redirect user to welcome page
-                            header("location: 1_mainpage.php");
+                            header("location: 8_youraccount.php");
                         } else{
                             // Display an error message if password is not valid
-                            echo $id.$password.$hashed_password.$username;
                             $password_err = "The password you entered was not valid.";
                         }
                     }
