@@ -1,4 +1,84 @@
 <?php
+  session_start();
+?>
+
+<html>
+<head>
+  <title>Login | Conference Gate</title>
+</head>
+<head>
+    <div class="topnav">
+  <a class="active" href="1_mainpage.php">Conference Gate</a>
+  <a href="aboutUs.php">About</a>
+
+<!-- <div class="login-container">
+    <form action="/2_userregistration.php">  
+      <button type="submit">Create New Account</button>
+    </form>
+  </div>
+
+  <div class="login-container">
+    <form action="/3_login.php">     
+      <button type="submit">Login</button>
+    </form>
+  </div> -->
+</div>
+
+
+<style type="text/css">
+        /* Add a black background color to the top navigation */
+.topnav {
+  background-color: #318ce7;
+  overflow: hidden;
+}
+
+/* Style the input container */
+.topnav .login-container {
+  float: right;
+}
+
+/* Style the button inside the input container */
+.topnav .login-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style when you hover on each tab */
+.topnav .login-container button:hover {
+  background: #ccc;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #ccc;
+  color: white;
+}
+
+    </style>
+
+<?php
 // Initialize the session
 session_start();
  
@@ -12,7 +92,7 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 $servername = "localhost";
     $user = "root";
     $pass = "mysql";
-    $database = "ConferenceGate";
+    $database = "conferencegate";
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
     $link = new mysqli($servername, $user, $pass, $database);
     // Check connection
@@ -71,7 +151,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["userID"] = $id;
                             $_SESSION["username"] = $username;                            
-                            // Redirect user to welcome page
+                            // Redirect user to my account page
                             header("location: 8_youraccount.php");
                         } else{
                             // Display an error message if password is not valid
@@ -125,7 +205,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="2_userregistration.php">Sign up now</a>.</p>
         </form>
     </div>    
 </body>

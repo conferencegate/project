@@ -1,24 +1,50 @@
 <?php
   session_start();
 ?>
-<!DOCTYPE html>
+
+<!--TOP NAV AREA !-->
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {margin:0;}
+    <div class="topnav">
+  <a class="active" href="1_mainpage.php">Conference Gate</a>
+  <a href="aboutUs.php">About</a>
+  <a href="16_logout.php">Logout</a>
 
-.navbar {
+</div>
+
+
+<style type="text/css">
+        /* Add a black background color to the top navigation */
+.topnav {
+  background-color: #318ce7;
   overflow: hidden;
-  background-color: #333;
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
-.navbar a {
+/* Style the input container */
+.topnav .login-container {
+  float: right;
+}
+
+/* Style the button inside the input container */
+.topnav .login-container button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Style when you hover on each tab */
+.topnav .login-container button:hover {
+  background: #ccc;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
   float: left;
-  display: block;
   color: #f2f2f2;
   text-align: center;
   padding: 14px 16px;
@@ -26,35 +52,106 @@ body {margin:0;}
   font-size: 17px;
 }
 
-.navbar a:hover {
-  background: #ddd;
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ddd;
   color: black;
 }
 
-.main {
-  padding: 16px;
-  margin-top: 30px;
-  height: 1500px; /* Used in this example to enable scrolling */
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #ccc;
+  color: white;
 }
-</style>
-</head>
-<body>
 
-<div class="navbar">
-  <a href="4_conferenceSearch.html">Conference Search</a>
-  <a href="#news">News</a>
-  <a href="16_logout.php">Logout</a>
-</div>
+</style>
+
 
 <div class="main">
-  <h1>Fixed Top Menu</h1>
-  <h2>Scroll this page to see the effect</h2>
-  <h2>The navigation bar will stay at the top of the page while scrolling</h2>
+  <h1>My Account Information</h1>
 
-  <p>Hello<?php
-  echo $_SESSION["id"];
-  ?></p>
 </div>
 
-</body>
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "mysql";
+$dbname = "conferencegate";
+
+ini_set('max_execution_time',300);
+
+// Create Connection 
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Check Connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT firstName, lastName, discipline, organization, email FROM Attendee WHERE userID = ".$_SESSION['userID'];
+$result = $conn->query($sql);
+
+if ($result->num_rows > 0) {
+  echo "<table>";
+  
+    while ($row = mysqli_fetch_assoc($result)){
+
+      echo
+      "<tr><td>". 
+
+      "First Name: " .
+      $row['firstName'] . 
+      "</tr><td>" . 
+
+      "Last Name: " .
+      $row['lastName'] . 
+      "</tr><td>" . 
+
+      "Discipline: " .
+      $row['discipline'] . 
+      "</tr><td>" . 
+
+      "Organization: " .
+      $row['organization'] . 
+      "</tr><td>" .
+
+      "Email: " .
+      $row['email'] . 
+      "</td></tr>";
+   
+  }
+    echo "</table>";
+}
+
+$sql2 = "SELECT c.conferenceID, c.name as cname, c.startDate, c.endDate FROM Conference c, Registration r WHERE c.conferenceID = r.conferenceID AND r.userID = ".$_SESSION['userID'];
+$result2 = $conn->query($sql2);
+
+?>
+  <br>
+  <table border="1">
+    <caption><b>Conferences You Are Registered For</b></caption>
+    <tr>
+
+      <th>Learn More</th>
+      <th>Name</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+
+      <?php
+      if ($result2) {
+        while($row2 = $result2->fetch_assoc()) {
+        echo "<tr>
+        <td><a href=learnMoreEvents.php?conferenceID=". $row2["conferenceID"] . ">Show Events</a></td>
+        <td>" . stripslashes($row2["cname"]) . "</td>
+        <td>" . $row2["startDate"] . "</td>
+        <td>" . $row2["endDate"] . "</td>
+        </tr>";
+        }
+      }
+
+      ?>
+
+  </table>
+</head>
 </html>
